@@ -1,16 +1,19 @@
 package moneycalculator;
 
-import Model.Currency;
+import Control.CalculateCommand;
 import Persistence.File.FileCurrencyLoader;
-import Persistence.File.WebServiceCurrencyLoader;
-import java.util.ArrayList;
+import Persistence.Rest.RestExchangeRateLoader;
 
 public class MoneyCalculator {
     public static void main(String[] args) {
-        FileCurrencyLoader fileCurrencyLoader = new FileCurrencyLoader("C:\\Users\\Cecilia Gimenez\\Documents\\NetBeansProjects\\MoneyCalculator\\currencies.txt");
-        WebServiceCurrencyLoader webserviceCurrencyLoader = new WebServiceCurrencyLoader("..");
         
-        ArrayList<Currency> loadAllCurrencies = fileCurrencyLoader.loadAllCurrencies();
-       
+        FileCurrencyLoader fileCurrencyLoader = new FileCurrencyLoader("");
+        
+        RestExchangeRateLoader restExchangeRateLoader = new RestExchangeRateLoader();
+//        WebserviceCurrencyLoader webserviceCurrencyLoader = new WebserviceCurrencyLoader("..");
+        MainFrame mainFrame = new MainFrame(fileCurrencyLoader.loadAllCurrencies());        
+        CalculateCommand calculateCommand = new CalculateCommand(mainFrame.getMoneyDialog(), mainFrame.getMoneyDisplay(), restExchangeRateLoader);
+        mainFrame.add(calculateCommand);
+//        ArrayList<Currency> loadAllCurrencies = fileCurrencyLoader.loadAllCurrencies();
     }
 }

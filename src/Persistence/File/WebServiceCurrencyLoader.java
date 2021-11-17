@@ -14,7 +14,7 @@ public class WebServiceCurrencyLoader implements CurrencyLoader{
     
     @Override
     public ArrayList<Currency> loadAllCurrencies() {
-        ArrayList<Currency> arrayList= new ArrayList<Currency>();
+        ArrayList<Currency> arrayList= new ArrayList<>();
         
         return arrayList;
     }
